@@ -17,8 +17,8 @@ const blogSchema = mongoose.Schema({
     slug: {
         type: String,
         lowercase: true,
-        unique: true,
-        required: true
+        required: true,
+        unique: true
     }
 }, {timestamps:true})
 

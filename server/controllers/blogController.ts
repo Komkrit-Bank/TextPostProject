@@ -1,5 +1,14 @@
-//Connect with Database
+//Connect with Database// Input Data to Database
 const slugify = require('slugify')
+const Blogs = require('../models/blogsModel')
+
+type blogs = {
+    title: string,
+    content: string,
+    author: string,
+    slug: string
+
+}
 
 
 //Save Data into API
@@ -16,7 +25,10 @@ exports.create = (req: any, res: any):void => {
             return res.status(400).json({error: "Content cannot be empty Please fill content"})
             break;
     }
-    res.json({
-        data:{title, content, author, slug}
-    })
+    //save data
+    Blogs.create({title, content, author, slug}).then((blog:blogs)=>{
+        res.json(blog)})
+        .catch((err:string) => {
+        res.status(404).json({error: "มีบทความชื่อซ้ำกัน"})
+        })
 }
