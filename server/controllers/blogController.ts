@@ -29,6 +29,7 @@ exports.create = (req: any, res: any):void => {
     Blogs.create({title, content, author, slug}).then((blog:blogs)=>{
         res.json(blog)})
         .catch((err:string) => {
-        res.status(404).json({error: "มีบทความชื่อซ้ำกัน"})
-        })
+        res.status(404).json({error: "มืชื่อบทความซ้ำกัน"}
+        )
+    })
 }
